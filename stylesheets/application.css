@@ -2,17 +2,22 @@ html {
   font: 18px/1.4 'Georgia', sans-serif;
 }
 
+a {
+  color: #000;
+  text-decoration: none;
+}
+
 .button {
   padding: 0.75em;
   color: #fff;
-  background-color: #777;
+  background-color: #00FF63;
   border-radius: 10px;
   text-decoration: none;
 }
 
 #app {
   margin: 2em auto;
-  width: 24em;
+  width: 30em;
 }
 
 @media (max-width: 600px) {
@@ -21,21 +26,64 @@ html {
   }
 }
 
-#app-login {
+#app-header {
   text-align: center;
 }
 
-#app-login h1 span {
+#app-header h1 span {
   display: block;
   font-size: 75%;
 }
 
-#app-login h1 {
+#app-header h1 {
   font: 28px/1.4 'Georgia', serif;
   text-transform: uppercase;
   letter-spacing: 4px;
 }
 
+#app-login {
+  text-align: center;
+}
+
 #app-login p {
   margin-bottom: 2em;
+}
+
+#app-playlists p {
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+#app-playlists #playlists {
+  padding: 0;
+  list-style: none;
+  /*background-color: #fafafa;*/
+}
+
+#app-playlists #playlists li {
+  padding: 0.5em 0.5em;
+  /*padding: 0.5em 0;*/
+  line-height: 30px;
+  border-top: 1px solid #eee;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#app-playlists #playlists a:last-child li {
+  border-bottom: 1px solid #eee;
+}
+
+#app-playlists #playlists li span {
+  float: right;
+  background-color: #00FF63;
+  color: #fff;
+  font-size: 75%;
+  line-height: 30px;
+  padding: 0 0.5em;
+  border-radius: 5px;
+}
+
+#app-playlists #playlists a:hover li {
+  background-color: #fafafa;
 }
