@@ -55,9 +55,9 @@
 
       <h2>{{name}}</h2>
 
-      <ol id="playlist">
+      <ol id="playlist" data-playlist-id="{{id}}">
         {{#each tracks}}
-          <li>
+          <li data-track-id="{{id}}">
             {{name}}
             <a href="#"><span class="destroy">Destroy</span></a>
           </li>

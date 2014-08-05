@@ -18,6 +18,7 @@
     var result = {};
 
     fetchFromSpotify(playlistUri, function(data){
+      result.id = data.id;
       result.name = data.name;
       result.tracks = $.map(data.tracks.items, function(obj) {
         return obj.track;
@@ -33,6 +34,19 @@
       window.Plautocompleter.Main.showView('playlist');
     });
   };
+
+  var save = function(playlist) {
+    var accessToken = window.Plautocompleter.Login.getToken();
+    $.ajax({
+      url: 'https://api.spotify.com/v1/users/' + window.Plautocompleter.Login.userId + '/playlists',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
+      },
+      success: function(response) {
+        onSuccess(response);
+      }
+    });
+  }
 
   /* Private methods */
 
@@ -61,7 +75,8 @@
   return {
     initialize: initialize,
     fetch: fetch,
-    generatePlaylist: generatePlaylist
+    generatePlaylist: generatePlaylist,
+    save: save
   };
 
 })(jQuery);
