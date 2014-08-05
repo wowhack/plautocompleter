@@ -1,0 +1,41 @@
+html {
+  font: 18px/1.4 'Georgia', sans-serif;
+}
+
+.button {
+  padding: 0.75em;
+  color: #fff;
+  background-color: #777;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+#app {
+  margin: 2em auto;
+  width: 24em;
+}
+
+@media (max-width: 600px) {
+  #app {
+    width: auto;
+  }
+}
+
+#app-login {
+  text-align: center;
+}
+
+#app-login h1 span {
+  display: block;
+  font-size: 75%;
+}
+
+#app-login h1 {
+  font: 28px/1.4 'Georgia', serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+#app-login p {
+  margin-bottom: 2em;
+}
