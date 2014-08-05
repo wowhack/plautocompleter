@@ -6,6 +6,10 @@ import functools
 
 app = Flask(__name__)
 
+@app.route("/")
+def index():
+    return err("Nothing to see here")
+
 @app.route("/generate_playlist/<songs>")
 @app.route("/generate_playlist/<songs>/<limit>")
 @app.route("/generate_playlist/<songs>/<limit>/<pretty>")
@@ -40,13 +44,16 @@ def generate_playlist(songs, limit=10, pretty=None):
 
     return formatter(response)
 
+def err(msg):
+    return json.dumps({
+        'status': {
+            'success': False,
+            'message': msg
+        }})
+
 @app.errorhandler(500)
 def pageNotFound(error):
-    return json.dumps({
-            'status': {
-                'success': False,
-                'message': "Unexpected error '{}'".format(error.message)
-            }})
+    return err("Unexpected error '{}'".format(error.message))
 
 if __name__ == "__main__":
     app.run()
