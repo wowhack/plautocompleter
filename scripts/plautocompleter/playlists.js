@@ -57,9 +57,9 @@
   var fetchTracksFromSpotify = function(playlistUri, onSuccess) {
     var accessToken = window.Plautocompleter.Login.getToken();
     $.ajax({
-        url: playlistUri,
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
+      url: playlistUri,
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
       },
       success: function(response) {
         onSuccess(response);
