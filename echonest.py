@@ -8,6 +8,18 @@ import json
 from pprint import pprint
 import logging
 
+ECHONEST_SUCCESS = 0
+
+ECHONEST_STATUS = {
+    -1: "Unknown Error",
+    0: "Success",
+    1: "Missing/ Invalid API Key",
+    2: "This API key is not allowed to call this method",
+    3: "Rate Limit Exceeded",
+    4: "Missing Parameter",
+    5: "Invalid Parameter"
+}
+
 class EchoNestException(Exception): pass
 
 class UnknownTrackException(EchoNestException): pass
@@ -47,8 +59,7 @@ def generate_songs(songs, limit=10):
 
     response = json.loads(data)
 
-    # TODO: catch keyerror
-    if response["response"]["status"]["code"] == 0:
+    if response["response"]["status"]["code"] == ECHONEST_SUCCESS:
         result = []
         for song in response['response']['songs']:
             try:
@@ -62,10 +73,14 @@ def generate_songs(songs, limit=10):
             except KeyError:
                 pass
         return result
-    elif response["response"]["status"]["code"] == 5:
-        raise UnknownTrackException("Unknown tracks {}".format(songs))
     else:
-        raise EchoNestException("Invalid request {}".format(response["response"]["status"]))
+        status = response["response"]["status"]
+        message = status["message"]
+        code = status["code"]
+        code_type = ECHONEST_STATUS[code]
+        err_message = "EchoNest API Error #{} ({}): {}".format(code, code_type, message)
+        logging.error(err_message)
+        raise EchoNestException(err_message)
 
 if __name__ == "__main__":
     taylorswift = "spotify:track:26eccs3bbw6DMekFwZbdL2"
