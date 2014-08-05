@@ -47,7 +47,7 @@ def generate_songs(songs, limit=10):
             "song_id": songs,
             "format": "json",
             "results": limit,
-            "bucket": "id:spotify",
+            "bucket": ["tracks", "id:spotify"],
             "limit": "true",
             "type": "song-radio"
         },
@@ -63,8 +63,8 @@ def generate_songs(songs, limit=10):
         result = []
         for song in response['response']['songs']:
             try:
-                spotify_id = [i['foreign_id'] for i in song['artist_foreign_ids']
-                              if i['catalog'] == 'spotify'][0]
+                track_info = song['tracks'][0]
+                spotify_id = track_info['foreign_id']
                 result.append({
                     'id': spotify_id,
                     'artist_name': song['artist_name'],
