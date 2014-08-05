@@ -22,27 +22,30 @@ SERVER = "developer.echonest.com"
 PATH = "/api/v4/playlist/static"
 config = get_config()
 
-song_ids = ["spotify:track:3L7BcXHCG8uT92viO6Tikl"]
+def generate_songs(songs, limit=10):
+    """Take a list of song ids and generate a list of similar songs"""
+    params = urllib.urlencode(
+        {
+            "api_key": config['api_key'],
+            "song_id": songs,
+            "format": "json",
+            "results": limit,
+            "type": "song-radio"
+        },
+        doseq=True)
 
-params = urllib.urlencode(
-    {
-        "api_key": config['api_key'],
-        "song_id": song_ids,
-        "format": "json",
-        "results": "10",
-        "type": "song-radio"
-    },
-    doseq=True)
+    conn = httplib.HTTPConnection(SERVER)
+    conn.request("GET", PATH + "?" + params)
+    data = conn.getresponse().read()
 
-conn = httplib.HTTPConnection(SERVER)
-conn.request("GET", PATH + "?" + params)
-data = conn.getresponse().read()
+    response = json.loads(data)
 
-response = json.loads(data)
+    # TODO: catch keyerror
+    if response["response"]["status"]["code"] == 0:
+        return response['response']['songs']
+    else:
+        raise Exception("Invalid request {}".format(response["response"]["status"]))
 
-# TODO: catch keyerror
-if response["response"]["status"]["code"] == 0:
-    for song in response['response']['songs']:
-        print("{} - {}".format(song['artist_name'], song['title']))
-else:
-    print("Invalid request {}".format(response["response"]["status"]))
+if __name__ == "__main__":
+    pprint(generate_songs(["spotify:track:3L7BcXHCG8uT92viO6Tikl"], 42))
+
