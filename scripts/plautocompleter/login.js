@@ -1,19 +1,23 @@
 ;window.Plautocompleter.Login = (function($) {
 
-  var redirectURI = 'http://localhost:8000/';
+  var redirectUri = 'http://localhost:8000/';
   var accessToken;
   var userId;
 
-  var login = function(){
+  var initialize = function() {
+    $('#login').on('click', function() {
+      window.Plautocompleter.Login.login();
+    });
+  };
 
+  var login = function(){
     var params = {
-        client_id: '1dfce943394b4650ba94e907d2856008',
-        redirect_uri: redirectURI,
-        scope: 'user-read-private playlist-read-private',
-        response_type: 'token'
+      client_id: '1dfce943394b4650ba94e907d2856008',
+      redirect_uri: redirectUri,
+      scope: 'user-read-private playlist-read-private',
+      response_type: 'token'
     };
 
-    // redirect to login page.
     window.location = "https://accounts.spotify.com/authorize?" + toQueryString(params);
   }
 
@@ -28,7 +32,7 @@
   }
 
   var getToken = function() {
-    if(accessToken != undefined) {
+    if (accessToken != undefined) {
       return  accessToken;
     }
 
@@ -39,6 +43,7 @@
   /* Export public interface */
 
   return {
+    initialize: initialize,
     login: login,
     getToken: getToken,
     userId: userId

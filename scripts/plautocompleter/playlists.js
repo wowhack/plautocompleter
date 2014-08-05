@@ -11,20 +11,18 @@
   };
 
   var fetch = function() {
-    fetchFromSpotify(function(data) {
-      var playlist = removeNotCurrentUsersPlaylists(data.items);
-      el.html(template(playlist));
-    });
-  };
-
-  var fetchTracks = function(playlist, onSuccess) {
-    fetchTracksFromSpotify(playlist, function(data){
-      var playlistItems = data.tracks.items;
-      var tracks = $.map(playlistItems, function(obj) {
-        return obj.track;
+    var data = {};
+    fetchFromSpotify(function(response) {
+      data.numberOfPlaylists = response.total;
+      data.playlists = $.map(removeNotCurrentUsersPlaylists(response.items), function(item) {
+        return {
+          name: item.name,
+          href: item.href,
+          numberOfTracks: item.tracks.total,
+          isShort: (item.tracks.total < 5)
+        };
       });
-
-      onSuccess(tracks);
+      el.html(template(data));
     });
   };
 
@@ -75,8 +73,7 @@
 
   return {
     initialize: initialize,
-    fetch: fetch,
-    fetchTracks: fetchTracks
+    fetch: fetch
   };
 
 })(jQuery);

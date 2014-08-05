@@ -7,6 +7,53 @@ a {
   text-decoration: none;
 }
 
+ul, ol {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style-position: inside;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li,
+ol li {
+  padding: 0.5em 0.5em;
+  line-height: 30px;
+  border-top: 1px solid #eee;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+ul a:last-child li,
+ol a:last-child li {
+  border-bottom: 1px solid #eee;
+}
+
+ul li span,
+ol li span {
+  float: right;
+  background-color: #00FF63;
+  color: #fff;
+  font-size: 75%;
+  line-height: 30px;
+  padding: 0 0.5em;
+  border-radius: 5px;
+}
+
+ul li span.destroy,
+ol li span.destroy {
+  background-color: #F32C09;
+}
+
+ul a:hover li,
+ol a:hover li {
+  background-color: #fafafa;
+}
+
 .button {
   padding: 0.75em;
   color: #fff;
@@ -49,39 +96,17 @@ a {
   margin-bottom: 2em;
 }
 
-#app-playlists p {
-  margin-bottom: 2em;
+#app-playlists p,
+#app-playlist p {
+  margin-bottom: 1.5em;
   text-align: center;
 }
 
-#app-playlists #playlists {
-  padding: 0;
-  list-style: none;
-}
-
-#app-playlists #playlists li {
-  padding: 0.5em 0.5em;
-  line-height: 30px;
+#app-playlist h2 {
+  font: 22px/1 'Georgia', serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-left: 25px;
+  padding-top: 22px;
   border-top: 1px solid #eee;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#app-playlists #playlists a:last-child li {
-  border-bottom: 1px solid #eee;
-}
-
-#app-playlists #playlists li span {
-  float: right;
-  background-color: #00FF63;
-  color: #fff;
-  font-size: 75%;
-  line-height: 30px;
-  padding: 0 0.5em;
-  border-radius: 5px;
-}
-
-#app-playlists #playlists a:hover li {
-  background-color: #fafafa;
 }
