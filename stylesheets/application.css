@@ -29,7 +29,7 @@ ol li {
 }
 
 ul a:last-child li,
-ol a:last-child li {
+ol li:last-child {
   border-bottom: 1px solid #eee;
 }
 
@@ -109,4 +109,9 @@ ol a:hover li {
   padding-left: 25px;
   padding-top: 22px;
   border-top: 1px solid #eee;
+}
+
+#app-playlist .actions {
+  text-align: center;
+  margin-top: 2em;
 }
