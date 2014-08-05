@@ -3,6 +3,7 @@ from flask import Flask
 import echonest
 import json
 import functools
+from decorators import crossdomain
 
 app = Flask(__name__)
 
@@ -13,6 +14,7 @@ def index():
 @app.route("/generate_playlist/<songs>")
 @app.route("/generate_playlist/<songs>/<limit>")
 @app.route("/generate_playlist/<songs>/<limit>/<pretty>")
+@crossdomain(origin='*', max_age=0)
 def generate_playlist(songs, limit=10, pretty=None):
     limit = int(limit)
     song_ids = songs.split(",")
