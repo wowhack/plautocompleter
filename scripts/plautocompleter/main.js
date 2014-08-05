@@ -16,9 +16,6 @@ jQuery(function($) {
         showView('playlists');
         window.Plautocompleter.Playlists.fetch();
       }
-
-      // window.Plautocompleter.Playlist.generatePlaylist('https://api.spotify.com/v1/users/jensljungblad/playlists/0O0s4q0D3Jo8NWP8teZbfV');
-
     };
 
     var showView = function(view) {
