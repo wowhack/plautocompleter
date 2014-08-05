@@ -11,8 +11,18 @@
   };
 
   var fetch = function() {
-    fetchFromSpotify(function(data) {
-      el.html(template(data.items));
+    var data = {};
+    fetchFromSpotify(function(response) {
+      data.numberOfPlaylists = response.total;
+      data.playlists = $.map(response.items, function(item) {
+        return {
+          name: item.name,
+          href: item.href,
+          numberOfTracks: item.tracks.total,
+          isShort: (item.tracks.total < 5)
+        };
+      });
+      el.html(template(data));
     });
   };
 

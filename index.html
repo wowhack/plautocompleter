@@ -23,23 +23,37 @@
 
       <div id="app-playlists">
         <p>
-          We found some nice, short playlists in your library<br>
-          Now pick one to autocompletify
+          Listed below are the playlists from your library<br>
+          Pick a nice &amp; short one to autocompletify
         </p>
 
         <ul id="playlists"></ul>
       </div>
 
+      <div id="app-playlist">
+
+      </div>
+
     </div>
 
     <script id="playlists-template" type="text/x-handlebars-template">
-      {{#each}}
+      {{#each playlists}}
         <a href="#" data-href="{{href}}">
           <li>
             {{name}}
+            {{#if isShort}}
+              <span>Nice &amp; short</span>
+            {{/if}}
           </li>
         </a>
       {{/each}}
+    </script>
+
+    <script id="playlist-template" type="text/x-handlebars-template">
+      <p>
+        An amazing playlist was suggested<br>
+        Modify to your liking then save
+      </p>
     </script>
 
     <script type="text/javascript">
@@ -51,6 +65,7 @@
     <script type="text/javascript" src="scripts/plautocompleter/main.js"></script>
     <script type="text/javascript" src="scripts/plautocompleter/login.js"></script>
     <script type="text/javascript" src="scripts/plautocompleter/playlists.js"></script>
+    <script type="text/javascript" src="scripts/plautocompleter/playlist.js"></script>
 
   </body>
 </html>

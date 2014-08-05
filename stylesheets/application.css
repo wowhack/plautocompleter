@@ -85,3 +85,8 @@ a {
 #app-playlists #playlists a:hover li {
   background-color: #fafafa;
 }
+
+#app-playlist p {
+  margin-bottom: 2em;
+  text-align: center;
+}
