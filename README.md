@@ -1,0 +1,4 @@
+plautocompleter
+===============
+
+Playlist autocompletion
