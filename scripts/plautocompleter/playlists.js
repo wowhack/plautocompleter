@@ -12,7 +12,8 @@
 
   var fetch = function() {
     fetchFromSpotify(function(data) {
-      el.html(template(data.items));
+      var playlist = removeNotCurrentUsersPlaylists(data.items);
+      el.html(template(playlist));
     });
   };
 
@@ -37,9 +38,9 @@
         'Authorization': 'Bearer ' + accessToken
       },
       success: function(response) {
-        var user_id = response.id.toLowerCase();
+        window.Plautocompleter.Login.userId = response.id.toLowerCase();
         $.ajax({
-          url: 'https://api.spotify.com/v1/users/' + user_id + '/playlists',
+          url: 'https://api.spotify.com/v1/users/' + window.Plautocompleter.Login.userId + '/playlists',
           headers: {
             'Authorization': 'Bearer ' + accessToken
           },
@@ -61,6 +62,12 @@
       success: function(response) {
         onSuccess(response);
       }
+    });
+  };
+
+  var removeNotCurrentUsersPlaylists = function(playlist){
+    return $.grep(playlist, function(value) {
+      return value.owner.id == window.Plautocompleter.Login.userId;
     });
   };
 

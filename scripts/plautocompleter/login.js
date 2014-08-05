@@ -2,6 +2,7 @@
 
   var redirectURI = 'http://localhost:8000/';
   var accessToken;
+  var userId;
 
   var login = function(){
 
@@ -39,7 +40,8 @@
 
   return {
     login: login,
-    getToken: getToken
+    getToken: getToken,
+    userId: userId
   };
 
 })(jQuery);
