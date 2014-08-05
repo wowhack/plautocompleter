@@ -57,12 +57,10 @@ a {
 #app-playlists #playlists {
   padding: 0;
   list-style: none;
-  /*background-color: #fafafa;*/
 }
 
 #app-playlists #playlists li {
   padding: 0.5em 0.5em;
-  /*padding: 0.5em 0;*/
   line-height: 30px;
   border-top: 1px solid #eee;
   overflow: hidden;

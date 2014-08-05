@@ -27,25 +27,35 @@
           Now pick one to autocompletify
         </p>
 
-        <ul id="playlists">
-          <a href="#"><li>Chillax <span>Nice &amp; short</span></li></a>
-          <a href="#"><li>Running around like a crazy person</li></a>
-          <a href="#"><li>And another playlist <span>Nice &amp; short</span></li></a>
-          <a href="#"><li>Some more playlist <span>Nice &amp; short</span></li></a>
-          <a href="#"><li>A very very long playlist</li></a>
-          <a href="#"><li>With very many songs</li></a>
-          <a href="#"><li>And then one playlist with a title that just goes on and on and on...</li></a>
-        </ul>
+        <ul id="playlists"></ul>
       </div>
 
     </div>
+
+    <script id="playlists-template" type="text/x-handlebars-template">
+      {{#each}}
+        <a href="#" data-href="{{href}}">
+          <li>
+            {{name}}
+          </li>
+        </a>
+      {{/each}}
+    </script>
 
     <script type="text/javascript">
       window.Plautocompleter = {};
     </script>
 
     <script type="text/javascript" src="scripts/vendor/jquery.js"></script>
-    <script type="text/javascript" src="scripts/plautocompleter/main.js"></script>
-    <script type="text/javascript" src="scripts/plautocompleter/login.js"></script>
+    <script type="text/javascript" src="scripts/vendor/handlebars.js"></script>
+    <!--<script type="text/javascript" src="scripts/plautocompleter/main.js"></script>
+    <script type="text/javascript" src="scripts/plautocompleter/login.js"></script>-->
+    <script type="text/javascript" src="scripts/plautocompleter/playlists.js"></script>
+
+    <script>
+      window.Plautocompleter.Playlists.initialize($("#playlists"));
+      window.Plautocompleter.Playlists.fetch();
+    </script>
+
   </body>
 </html>
