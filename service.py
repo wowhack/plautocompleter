@@ -40,5 +40,13 @@ def generate_playlist(songs, limit=10, pretty=None):
 
     return formatter(response)
 
+@app.errorhandler(500)
+def pageNotFound(error):
+    return json.dumps({
+            'status': {
+                'success': False,
+                'message': "Unexpected error '{}'".format(error.message)
+            }})
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

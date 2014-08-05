@@ -28,6 +28,7 @@ config = get_config()
 
 def generate_songs(songs, limit=10):
     """Take a list of song ids and generate a list of similar songs"""
+
     params = urllib.urlencode(
         {
             "api_key": config['api_key'],
