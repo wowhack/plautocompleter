@@ -26,17 +26,6 @@
     });
   };
 
-  var fetchTracks = function(playlist, onSuccess) {
-    fetchTracksFromSpotify(playlist, function(data){
-      var playlistItems = data.tracks.items;
-      var tracks = $.map(playlistItems, function(obj) {
-        return obj.track;
-      });
-
-      onSuccess(tracks);
-    });
-  };
-
   /* Private methods */
 
   var fetchFromSpotify = function(onSuccess) {
@@ -61,25 +50,11 @@
     });
   };
 
-  var fetchTracksFromSpotify = function(playlistUri, onSuccess) {
-    var accessToken = window.Plautocompleter.Login.getToken();
-    $.ajax({
-        url: playlistUri,
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-      },
-      success: function(response) {
-        onSuccess(response);
-      }
-    });
-  };
-
   /* Export public interface */
 
   return {
     initialize: initialize,
-    fetch: fetch,
-    fetchTracks: fetchTracks
+    fetch: fetch
   };
 
 })(jQuery);

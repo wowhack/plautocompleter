@@ -30,9 +30,7 @@
         <ul id="playlists"></ul>
       </div>
 
-      <div id="app-playlist">
-
-      </div>
+      <div id="app-playlist"></div>
 
     </div>
 
@@ -52,8 +50,19 @@
     <script id="playlist-template" type="text/x-handlebars-template">
       <p>
         An amazing playlist was suggested<br>
-        Modify to your liking then save
+        Modify to your liking, then save
       </p>
+
+      <h2>{{name}}</h2>
+
+      <ol id="playlist">
+        {{#each tracks}}
+          <li>
+            {{name}}
+            <a href="#"><span class="destroy">Destroy</span></a>
+          </li>
+        {{/each}}
+      </ol>
     </script>
 
     <script type="text/javascript">

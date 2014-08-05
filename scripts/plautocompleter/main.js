@@ -1,8 +1,3 @@
-/*
-- fix playlists template so it shows length
-- fix playlists template with correct copy
-*/
-
 jQuery(function($) {
 
   window.Plautocompleter.Main = (function($) {
@@ -22,9 +17,7 @@ jQuery(function($) {
         window.Plautocompleter.Playlists.fetch();
       }
 
-
-
-      window.Plautocompleter.Playlist.generatePlaylist();
+      // window.Plautocompleter.Playlist.generatePlaylist('https://api.spotify.com/v1/users/jensljungblad/playlists/0O0s4q0D3Jo8NWP8teZbfV');
 
     };
 
