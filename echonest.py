@@ -68,10 +68,14 @@ def generate_songs(songs, limit=10):
 
 if __name__ == "__main__":
     taylorswift = "spotify:track:26eccs3bbw6DMekFwZbdL2"
-    metalguys = "spotify:track:26z9aeOfJ8FygiAivjDSr1"
-    spice = "spotify:track:1Je1IMUlBXcx1Fz0WE7oPT"
+    deathmetal = "spotify:track:26z9aeOfJ8FygiAivjDSr1"
+    spicegirls = "spotify:track:1Je1IMUlBXcx1Fz0WE7oPT"
     brassens = "spotify:track:5nuTwIhmN6AzktesqJh6p7"
-    punk = "spotify:track:0Z4AhW3uUuuHPi1eZ6F3Ms"
-    songs = generate_songs([spice, brassens, punk, taylorswift], 100)
+    punk = "spotify:track:34uKquOrQLgzBsUbFTkMTc"
+    indie1 = "spotify:track:3CsMdAuNoD7e8kRzHV24TR"
+    indie2 = "spotify:track:69kOkLUCkxIZYexIgSG8rq" 
+    indie3 = "spotify:track:3AA8xNhDC0MpqwkGX3EP5V"
+    emo = "spotify:track:1MX16fYlJ4HydXV9icjWfp"
+    songs = generate_songs([indie2,taylorswift,indie3], 100)
     for song in songs:
         print("{} - {}".format(song['artist_name'].encode('utf-8'), song['title'].encode('utf-8')))
