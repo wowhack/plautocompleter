@@ -44,14 +44,25 @@ ol li span {
   border-radius: 5px;
 }
 
+ol li i {
+  margin: 0 0.2em;
+  color: #999;
+  font-size: 75%;
+}
+
 ul li span.destroy,
 ol li span.destroy {
+  opacity: 0;
   background-color: #F32C09;
 }
 
-ul a:hover li,
-ol a:hover li {
+ul li:hover,
+ol li:hover {
   background-color: #fafafa;
+}
+
+ol li:hover span.destroy {
+  opacity: 1;
 }
 
 .button {

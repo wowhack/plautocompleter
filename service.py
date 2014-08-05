@@ -1,18 +1,23 @@
-from flask import Flask
-
-import echonest
 import json
 import functools
+import logging
+from os import path
+
+from flask import Flask, request, url_for, redirect
+
+import echonest
+from decorators import crossdomain
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return err("Nothing to see here")
+    return redirect(url_for('static', filename="index.html"))
 
 @app.route("/generate_playlist/<songs>")
 @app.route("/generate_playlist/<songs>/<limit>")
 @app.route("/generate_playlist/<songs>/<limit>/<pretty>")
+@crossdomain(origin='*', max_age=0)
 def generate_playlist(songs, limit=10, pretty=None):
     limit = int(limit)
     song_ids = songs.split(",")
@@ -52,7 +57,7 @@ def err(msg):
         }})
 
 @app.errorhandler(500)
-def pageNotFound(error):
+def internal_error(error):
     return err("Unexpected error '{}'".format(error.message))
 
 if __name__ == "__main__":
