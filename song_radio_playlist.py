@@ -30,6 +30,8 @@ def generate_songs(songs, limit=10):
             "song_id": songs,
             "format": "json",
             "results": limit,
+            "bucket": "id:spotify",
+            "limit": "true",
             "type": "song-radio"
         },
         doseq=True)
@@ -42,10 +44,21 @@ def generate_songs(songs, limit=10):
 
     # TODO: catch keyerror
     if response["response"]["status"]["code"] == 0:
-        return response['response']['songs']
+        result = []
+        for song in response['response']['songs']:
+            spotify_id = [i['foreign_id'] for i in song['artist_foreign_ids']
+                          if i['catalog'] == 'spotify'][0]
+            result.append({
+                'id': spotify_id,
+                'artist_name': song['artist_name'],
+                'title': song['title']
+            })
+        return result
     else:
         raise Exception("Invalid request {}".format(response["response"]["status"]))
 
 if __name__ == "__main__":
-    pprint(generate_songs(["spotify:track:3L7BcXHCG8uT92viO6Tikl"], 42))
+    songs = generate_songs(["spotify:track:3L7BcXHCG8uT92viO6Tikl"], 10)
+    for song in songs:
+        print("{} - {} <{}>".format(song['artist_name'], song['title'], song['id']))
 
