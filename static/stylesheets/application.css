@@ -1,5 +1,5 @@
 html {
-  font: 18px/1.4 'Georgia', sans-serif;
+  font: 18px/1.6 'Georgia', sans-serif;
 }
 
 a {
@@ -109,7 +109,7 @@ ol li:hover span.destroy {
 
 #app-playlists p,
 #app-playlist p {
-  margin-bottom: 1.5em;
+  margin-bottom: 2em;
   text-align: center;
 }
 
