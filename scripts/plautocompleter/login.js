@@ -1,13 +1,13 @@
 ;window.Plautocompleter.Login = (function($) {
 
-  var originUri = 'http://localhost:8000/';
+  var redirectURI = 'http://localhost:8000/';
   var accessToken;
 
   var login = function(){
 
     var params = {
         client_id: '1dfce943394b4650ba94e907d2856008',
-        redirect_uri: originUri,
+        redirect_uri: redirectURI,
         scope: 'user-read-private playlist-read-private',
         response_type: 'token'
     };

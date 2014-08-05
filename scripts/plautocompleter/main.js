@@ -1,19 +1,20 @@
 jQuery(function($) {
 
-  // Check if token exists
-  var token = window.Plautocompleter.Login.getToken();
+  // Initialize stuff
+  window.Plautocompleter.Playlists.initialize($("#playlists"));
 
-  if(token == undefined) {
-    //show logedin view.
+  // Check if token exists
+  if(window.Plautocompleter.Login.getToken() == undefined) {
     $('#app-login').show();
     $('#app-playlists').hide();
-  }
-  else {
+  } else {
     $('#app-login').hide();
     $('#app-playlists').show();
+    window.Plautocompleter.Playlists.fetch();
   }
 
-  document.getElementById('login-btn').addEventListener('click', function() {
-       window.Plautocompleter.Login.login();
+  $('#login').on('click', function() {
+    window.Plautocompleter.Login.login();
   });
+
 });
