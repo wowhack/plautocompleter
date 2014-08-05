@@ -29,7 +29,6 @@
 
   var generatePlaylist = function(playlist) {
     fetch(playlist, function(result) {
-      console.log(result);
       el.html(template(result));
       window.Plautocompleter.Main.showView('playlist');
     });
