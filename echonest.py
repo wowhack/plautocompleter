@@ -6,19 +6,19 @@ import httplib
 import urllib
 import json
 from pprint import pprint
+import logging
 
 class EchoNestException(Exception): pass
 
 class UnknownTrackException(EchoNestException): pass
 
-def get_config():
-    config = ConfigParser.ConfigParser()
-    config.read('config.ini')
+ENV_API = 'ECHONEST_API_KEY'
 
-    if config.has_option('api', 'api_key'):
-        api_key =  config.get('api', 'api_key')
-    else:
-        raise Exception('No api:api_key in config')
+def get_config():
+    api_key = os.environ.get(ENV_API)
+
+    if not api_key:
+        raise Exception('No {} in environment'.format(ENV_API))
 
     return {'api_key': api_key}
 

@@ -8,6 +8,10 @@
   var initialize = function(elParam) {
     el = elParam;
     template = Handlebars.compile($("#playlists-template").html());
+
+    $('body').on('click', '#playlists a', function() {
+      window.Plautocompleter.Playlist.generatePlaylist($(this).data('href'));
+    });
   };
 
   var fetch = function() {
