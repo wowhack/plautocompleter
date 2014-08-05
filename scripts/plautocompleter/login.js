@@ -14,7 +14,7 @@
     var params = {
       client_id: '1dfce943394b4650ba94e907d2856008',
       redirect_uri: redirectUri,
-      scope: 'user-read-private playlist-read-private',
+      scope: 'user-read-private playlist-read-private playlist-modify-public playlist-modify-private',
       response_type: 'token'
     };
 

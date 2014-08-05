@@ -12,6 +12,16 @@
     $('#app').on('click', '.destroy', function() {
       $(this).parents('li').remove();
     });
+
+    $('#app').on('click', '#save', function() {
+      var $playlist = $('#playlist');
+      var playlistId = $playlist.data('playlist-id');
+      var playlistTracks = $.map($playlist.children(), function(item) {
+        return $(item).data('track-uri');
+      });
+
+      save(playlistId, playlistTracks);
+    });
   };
 
   var fetch = function(playlistUri, onSuccess) {
@@ -35,15 +45,19 @@
     });
   };
 
-  var save = function(playlist) {
+  var save = function(playlistId, playlistTracks) {
     var accessToken = window.Plautocompleter.Login.getToken();
+
     $.ajax({
-      url: 'https://api.spotify.com/v1/users/' + window.Plautocompleter.Login.userId + '/playlists',
+      url: 'https://api.spotify.com/v1/users/' + window.Plautocompleter.Login.userId
+        + '/playlists/' + playlistId
+        + '/tracks?uris=' + playlistTracks.toString(),
+      type: 'PUT',
       headers: {
         'Authorization': 'Bearer ' + accessToken
       },
       success: function(response) {
-        onSuccess(response);
+        console.log('Yeaaayyyy!');
       }
     });
   }
