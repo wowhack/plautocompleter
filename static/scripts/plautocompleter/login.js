@@ -1,6 +1,6 @@
 ;window.Plautocompleter.Login = (function($) {
 
-  var redirectUri = 'http://localhost:8000/';
+  var redirectUri = window.location.origin;
   var accessToken;
   var userId;
 
@@ -24,9 +24,9 @@
   function toQueryString(obj) {
     var parts = [];
     for (var i in obj) {
-        if (obj.hasOwnProperty(i)) {
-            parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
-        }
+      if (obj.hasOwnProperty(i)) {
+        parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
+      }
     }
     return parts.join("&");
   }
