@@ -1,12 +1,48 @@
-# http://developer.echonest.com/api/v4/playlist/static?api_key=HEBP8NCWOZVUXXPYV&song_id=spotify:track:3L7BcXHCG8uT92viO6Tikl&format=xml&results=100&type=song-radio
+from __future__ import print_function
+import ConfigParser
+import os
 
+import httplib
+import urllib
 import json
-import pprint
+from pprint import pprint
 
-data = """{"response": {"status": {"version": "4.2", "code": 0, "message": "Success"}, "songs": [{"artist_id": "ARH6W4X1187B99274F", "id": "SONTJAC131677143B0", "artist_name": "Radiohead", "title": "A Wolf At The Door"}]}}"""
-songs = json.loads(data)
+def get_config():
+    config = ConfigParser.ConfigParser()
+    config.read('config.ini')
 
-if songs["response"]["status"]["code"] == 0:
-	pprint.pprint(songs)
+    if config.has_option('api', 'api_key'):
+        api_key =  config.get('api', 'api_key')
+    else:
+        raise Exception('No api:api_key in config')
+
+    return {'api_key': api_key}
+
+SERVER = "developer.echonest.com"
+PATH = "/api/v4/playlist/static"
+config = get_config()
+
+song_ids = ["spotify:track:3L7BcXHCG8uT92viO6Tikl"]
+
+params = urllib.urlencode(
+    {
+        "api_key": config['api_key'],
+        "song_id": song_ids,
+        "format": "json",
+        "results": "10",
+        "type": "song-radio"
+    },
+    doseq=True)
+
+conn = httplib.HTTPConnection(SERVER)
+conn.request("GET", PATH + "?" + params)
+data = conn.getresponse().read()
+
+response = json.loads(data)
+
+# TODO: catch keyerror
+if response["response"]["status"]["code"] == 0:
+    for song in response['response']['songs']:
+        print("{} - {}".format(song['artist_name'], song['title']))
 else:
-	print "Invalid request " + str(songs["response"]["status"])
+    print("Invalid request {}".format(response["response"]["status"]))
