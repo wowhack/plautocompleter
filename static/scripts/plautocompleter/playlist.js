@@ -52,15 +52,10 @@
         };
       });
 
-      // Make some fetching from the intense scrubland
-      var ids = $.map(result.tracks.slice(0, 5), function(item) {
-        return item.uri;
-      });
-
-      // fetchFromIntenseScrubland(ids, function(tracks) {
-        // result.tracks = result.tracks.concat(tracks);
+      fetchFromIntenseScrubland(result, function(tracks) {
+        result.tracks = result.tracks.concat(tracks);
         onSuccess(result);
-      // });
+      });
     });
   };
 
@@ -105,11 +100,14 @@
     });
   };
 
-  var fetchFromIntenseScrubland = function(tracks, onSuccess) {
+  var fetchFromIntenseScrubland = function(playlist, onSuccess) {
     $.ajax({
-      url: 'http://intense-scrubland-2743.herokuapp.com/generate_playlist/' + tracks.join(',') + '/10',
+      url: 'http://intense-scrubland-2743.herokuapp.com/generate_playlist/10',
+      type: 'POST',
+      data: JSON.stringify(playlist),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
       success: function(response) {
-        response = JSON.parse(response);
         onSuccess($.map(response.songs, function(item) {
           return {
             artist: item.artist_name,
