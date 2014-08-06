@@ -74,7 +74,7 @@
         'Authorization': 'Bearer ' + accessToken
       },
       success: function(response) {
-        console.log('Yeaaayyyy!');
+        window.Plautocompleter.Main.showView('playlists');
       }
     });
   }
