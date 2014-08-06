@@ -14,9 +14,9 @@ app = Flask(__name__)
 def index():
     return redirect(url_for('static', filename="index.html"))
 
-@app.route("/generate_playlist", methods=['POST'])
-@app.route("/generate_playlist/<limit>", methods=['POST'])
-@app.route("/generate_playlist/<limit>/<pretty>", methods=['POST'])
+@app.route("/generate_playlist", methods=['POST', 'OPTIONS'])
+@app.route("/generate_playlist/<limit>", methods=['POST', 'OPTIONS'])
+@app.route("/generate_playlist/<limit>/<pretty>", methods=['POST', 'OPTIONS'])
 @crossdomain(origin='*')
 @nocache
 def generate_playlist(limit=10, pretty=None):
