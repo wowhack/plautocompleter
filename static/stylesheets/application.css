@@ -65,10 +65,6 @@ ol li:hover span.destroy {
   opacity: 1;
 }
 
-ol li.original:last-child {
-  border-bottom: 2px solid #ddd;
-}
-
 .button {
   padding: 0.75em;
   color: #fff;
@@ -113,8 +109,12 @@ ol li.original:last-child {
 
 #app-playlists p,
 #app-playlist p {
-  margin-bottom: 2em;
   text-align: center;
+}
+
+#app-playlists p:last-of-type,
+#app-playlist p {
+  margin-bottom: 2em;
 }
 
 #app-playlist h2 {
@@ -132,4 +132,8 @@ ol li.original:last-child {
 
 #app-playlist .actions #back {
   padding-left: 0.25em;
+}
+
+#app-playlist .last-original {
+  border-top: 4px double #ddd;
 }

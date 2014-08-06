@@ -59,6 +59,8 @@
     fetch(playlist, function(result) {
       el.html(template(result));
       window.Plautocompleter.Main.showView('playlist');
+
+      $('ol li.original').last().next().addClass('last-original');
     });
   };
 
