@@ -17,7 +17,8 @@ def index():
 @app.route("/generate_playlist/<songs>")
 @app.route("/generate_playlist/<songs>/<limit>")
 @app.route("/generate_playlist/<songs>/<limit>/<pretty>")
-@crossdomain(origin='*', max_age=0)
+@crossdomain(origin='*')
+@nocache
 def generate_playlist(songs, limit=10, pretty=None):
     limit = int(limit)
     song_ids = songs.split(",")

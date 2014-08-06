@@ -1,5 +1,5 @@
 html {
-  font: 18px/1.4 'Georgia', sans-serif;
+  font: 18px/1.6 'Georgia', sans-serif;
 }
 
 a {
@@ -113,7 +113,7 @@ ol li.original:last-child {
 
 #app-playlists p,
 #app-playlist p {
-  margin-bottom: 1.5em;
+  margin-bottom: 2em;
   text-align: center;
 }
 
@@ -127,6 +127,9 @@ ol li.original:last-child {
 }
 
 #app-playlist .actions {
-  text-align: center;
   margin-top: 2em;
+}
+
+#app-playlist .actions #back {
+  padding-left: 0.25em;
 }
