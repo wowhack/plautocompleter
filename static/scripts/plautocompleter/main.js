@@ -18,7 +18,7 @@ jQuery(function($) {
       }
     };
 
-    var showView = function(view) {
+    var showView = function(view, flash) {
       $('#app-login').hide();
       $('#app-playlists').hide();
       $('#app-playlist').hide();
@@ -29,6 +29,10 @@ jQuery(function($) {
       } else if (view == 'playlist') {
         $('#app-playlist').show();
       };
+
+      if (flash) {
+        console.log(flash);
+      }
     };
 
     /* Export public interface */

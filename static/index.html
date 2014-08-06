@@ -2,6 +2,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <title>The Plautocompleter</title>
   </head>
   <body>
@@ -16,9 +17,9 @@
       <div id="app-login">
         <p>
           Playlist autocompletion made easy<br>
-          Turns tiny playlists into exceptionally long ones<br>
+          Turns tiny playlists into slightly longer ones<br>
         </p>
-        <a id="login" href="#" class="button">Sign in with Spotify</a>
+        <a id="login" href="#" class="button"><i class="fa fa-spotify"></i> Sign in with Spotify</a>
       </div>
 
       <div id="app-playlists">
@@ -40,7 +41,7 @@
           <li>
             {{name}}
             {{#if isShort}}
-              <span>Nice &amp; short</span>
+              <span class="nice"><i class="fa fa-thumbs-up"></i> Nice &amp; short</span>
             {{/if}}
           </li>
         </a>
@@ -59,13 +60,17 @@
         {{#each tracks}}
           <li data-track-uri="{{uri}}" {{#if original}} class='original' {{/if}}>
             {{name}} <i>by</i> {{artist}}
-            <a href="#"><span class="destroy">No thanks</span></a>
+            <span class="track-actions">
+              <a href="#" class="preview stopped"><i class="fa fa-volume-up"></i></a>
+              <a href="#" class="destroy"><i class="fa fa-times"></i></a>
+            </span>
+            <!--<a href="#"><span class="destroy">No thanks</span></a>-->
           </li>
         {{/each}}
       </ol>
 
       <div class="actions">
-        <a id="save" href="#" class="button">Save to Spotify</a>
+        <a id="save" href="#" class="button"><i class="fa fa-check"></i> Save to Spotify</a>
         <a id="back" href="#">or cancel</a>
       </div>
     </script>

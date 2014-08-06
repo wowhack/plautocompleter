@@ -13,6 +13,15 @@
       $(this).parents('li').remove();
     });
 
+    $('#app').on('click', '.preview', function() {
+      $this = $(this);
+      if ($this.hasClass('stopped')) {
+        $this.removeClass('stopped').addClass('playing');
+      } else {
+        $this.removeClass('playing').addClass('stopped');
+      }
+    });
+
     $('#app').on('click', '#save', function() {
       var $playlist = $('#playlist');
       var playlistId = $playlist.data('playlist-id');
@@ -54,6 +63,8 @@
     fetch(playlist, function(result) {
       el.html(template(result));
       window.Plautocompleter.Main.showView('playlist');
+
+      $('ol li.original').last().next().addClass('last-original');
     });
   };
 
@@ -69,7 +80,7 @@
         'Authorization': 'Bearer ' + accessToken
       },
       success: function(response) {
-        console.log('Yeaaayyyy!');
+        window.Plautocompleter.Main.showView('playlists');
       }
     });
   }
