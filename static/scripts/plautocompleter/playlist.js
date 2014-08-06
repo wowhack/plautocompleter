@@ -129,7 +129,7 @@
 
   var fetchFromIntenseScrubland = function(playlist, onSuccess) {
     $.ajax({
-      url: 'http://intense-scrubland-2743.herokuapp.com/generate_playlist/10',
+      url: 'http://plautocompleter.herokuapp.com/generate_playlist/10',
       type: 'POST',
       data: JSON.stringify(playlist),
       contentType: "application/json; charset=utf-8",
