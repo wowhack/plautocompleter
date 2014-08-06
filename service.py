@@ -17,7 +17,7 @@ def index():
 @app.route("/generate_playlist", methods=['POST', 'OPTIONS'])
 @app.route("/generate_playlist/<limit>", methods=['POST', 'OPTIONS'])
 @app.route("/generate_playlist/<limit>/<pretty>", methods=['POST', 'OPTIONS'])
-@crossdomain(origin='*')
+@crossdomain(origin='*', headers='Content-Type')
 @nocache
 def generate_playlist(limit=10, pretty=None):
     playlist = json.loads(request.get_data())
