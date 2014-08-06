@@ -46,7 +46,6 @@
     var result = {};
 
     fetchFromSpotify(playlistUri, function(data) {
-      console.log(data);
       result.id = data.id;
       result.name = data.name;
       result.tracks = $.map(data.tracks.items, function(item) {
