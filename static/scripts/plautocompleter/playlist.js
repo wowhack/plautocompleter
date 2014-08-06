@@ -2,6 +2,8 @@
 
   var el;
   var template;
+  var audioObject = null;
+
 
   /* Public methods */
 
@@ -13,12 +15,15 @@
       $(this).parents('li').remove();
     });
 
-    $('#app').on('click', '.preview', function() {
+    $('#app').on('click', '.preview', function(e) {
+      e.preventDefault();
       $this = $(this);
       if ($this.hasClass('stopped')) {
         $this.removeClass('stopped').addClass('playing');
+        playTrack($this.parents('li').data('track-uri'));
       } else {
         $this.removeClass('playing').addClass('stopped');
+        stopTrack();
       }
     });
 
@@ -41,6 +46,7 @@
     var result = {};
 
     fetchFromSpotify(playlistUri, function(data) {
+      console.log(data);
       result.id = data.id;
       result.name = data.name;
       result.tracks = $.map(data.tracks.items, function(item) {
@@ -83,7 +89,28 @@
         window.Plautocompleter.Main.showView('playlists');
       }
     });
-  }
+  };
+
+  var playTrack = function(trackUrl) {
+    // get the preview track from spotify
+    var id = trackUrl.split(':')[2];
+    var accessToken = window.Plautocompleter.Login.getToken();
+    $.ajax({
+      url: 'https://api.spotify.com/v1/tracks/' + id,
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
+      },
+      success: function(response) {
+        audioObject = new Audio(response.preview_url);
+        audioObject.play();
+      }
+    });
+
+  };
+
+  var stopTrack = function() {
+    audioObject.pause();
+  };
 
   /* Private methods */
 
