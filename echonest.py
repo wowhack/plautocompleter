@@ -1,7 +1,7 @@
 from __future__ import print_function
 import ConfigParser
 import os
-
+import random
 import httplib
 import urllib
 import json
@@ -38,8 +38,15 @@ SERVER = "developer.echonest.com"
 PATH = "/api/v4/playlist/static"
 config = get_config()
 
-def generate_songs(songs, limit=10):
-    """Take a list of song ids and generate a list of similar songs"""
+def generate_songs(playlist, limit=10):
+    """Take a playlist and generate a list of similar songs"""
+
+    songs = [item['uri'] for item in playlist['tracks']]
+    random.shuffle(songs)
+    songs = songs[:5]
+
+    unique_tracks = set([(item['artist'], item['name']) 
+                        for item in playlist['tracks']])
 
     params = urllib.urlencode(
         {
@@ -65,11 +72,14 @@ def generate_songs(songs, limit=10):
             try:
                 track_info = song['tracks'][0]
                 spotify_id = track_info['foreign_id']
-                result.append({
-                    'id': spotify_id,
-                    'artist_name': song['artist_name'],
-                    'title': song['title']
-                })
+                song_info = (song['artist_name'], song['title'])
+                if song_info not in unique_tracks:
+                    result.append({
+                        'id': spotify_id,
+                        'artist_name': song['artist_name'],
+                        'title': song['title']
+                    })
+                    unique_tracks.add(song_info)
             except KeyError:
                 pass
         return result

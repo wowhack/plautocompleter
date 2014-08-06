@@ -23,7 +23,6 @@ def generate_playlist(limit=10, pretty=None):
     playlist = json.loads(request.get_data())
     logging.warning(playlist)
     limit = int(limit)
-    song_ids = [item['uri'] for item in playlist['tracks']][:5]
 
     if pretty == "pretty":
         formatter = functools.partial(
@@ -35,7 +34,7 @@ def generate_playlist(limit=10, pretty=None):
         formatter = json.dumps
 
     try:
-        result = echonest.generate_songs(song_ids, limit)
+        result = echonest.generate_songs(playlist, limit)
     except echonest.EchoNestException as ex:
         return formatter({
             'status': {
