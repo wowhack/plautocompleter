@@ -22,6 +22,10 @@
 
       save(playlistId, playlistTracks);
     });
+
+    $('#app').on('click', '#back', function() {
+      window.Plautocompleter.Main.showView('playlists');
+    });
   };
 
   var fetch = function(playlistUri, onSuccess) {

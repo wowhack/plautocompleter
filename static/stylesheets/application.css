@@ -123,6 +123,9 @@ ol li:hover span.destroy {
 }
 
 #app-playlist .actions {
-  text-align: center;
   margin-top: 2em;
+}
+
+#app-playlist .actions #back {
+  padding-left: 0.25em;
 }
