@@ -57,7 +57,7 @@
 
       <ol id="playlist" data-playlist-id="{{id}}">
         {{#each tracks}}
-          <li data-track-uri="{{uri}}">
+          <li data-track-uri="{{uri}}" {{#if original}} class='original' {{/if}}>
             {{name}} <i>by</i> {{artist}}
             <a href="#"><span class="destroy">No thanks</span></a>
           </li>

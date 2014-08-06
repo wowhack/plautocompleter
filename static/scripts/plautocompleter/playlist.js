@@ -34,12 +34,13 @@
         return {
           artist: item.track.artists[0].name,
           name: item.track.name,
-          uri: item.track.uri
+          uri: item.track.uri,
+          original: true
         };
       });
 
       // Make some fetching from the intense scrubland
-      var ids = $.map(result.tracks.slice(0, 1), function(item) {
+      var ids = $.map(result.tracks.slice(0, 5), function(item) {
         return item.uri;
       });
 
@@ -98,7 +99,8 @@
           return {
             artist: item.artist_name,
             name: item.title,
-            uri: item.id
+            uri: item.id,
+            original: false
           };
         }));
       }

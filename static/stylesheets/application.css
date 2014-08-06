@@ -65,6 +65,10 @@ ol li:hover span.destroy {
   opacity: 1;
 }
 
+ol li.original:last-child {
+  border-bottom: 2px solid #ddd;
+}
+
 .button {
   padding: 0.75em;
   color: #fff;
