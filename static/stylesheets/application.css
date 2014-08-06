@@ -71,6 +71,8 @@ ol .track-actions {
   right: 0;
   opacity: 0;
   padding-right: 0.5em;
+  padding-left: 0.5em;
+  background-color: #fafafa;
 }
 
 ol .track-actions i {
