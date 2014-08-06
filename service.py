@@ -6,7 +6,7 @@ from os import path
 from flask import Flask, request, url_for, redirect
 
 import echonest
-from decorators import crossdomain
+from decorators import crossdomain, nocache
 
 app = Flask(__name__)
 
@@ -14,14 +14,16 @@ app = Flask(__name__)
 def index():
     return redirect(url_for('static', filename="index.html"))
 
-@app.route("/generate_playlist/<songs>")
-@app.route("/generate_playlist/<songs>/<limit>")
-@app.route("/generate_playlist/<songs>/<limit>/<pretty>")
+@app.route("/generate_playlist", methods=['POST'])
+@app.route("/generate_playlist/<limit>", methods=['POST'])
+@app.route("/generate_playlist/<limit>/<pretty>", methods=['POST'])
 @crossdomain(origin='*')
 @nocache
-def generate_playlist(songs, limit=10, pretty=None):
+def generate_playlist(limit=10, pretty=None):
+    playlist = json.loads(request.get_data())
+    logging.warning(playlist)
     limit = int(limit)
-    song_ids = songs.split(",")
+    song_ids = [item['uri'] for item in playlist['tracks']][:5]
 
     if pretty == "pretty":
         formatter = functools.partial(
