@@ -56,16 +56,6 @@ ol li:hover {
   background-color: #fafafa;
 }
 
-/*ul li span.destroy,
-ol li span.destroy {
-  opacity: 0;
-  background-color: #F32C09;
-}
-
-ol li:hover span.destroy {
-  opacity: 1;
-}*/
-
 ol .track-actions {
   position: absolute;
   right: 0;
