@@ -80,15 +80,18 @@ def generate_songs(playlist, limit=10):
 
         if response["response"]["status"]["code"] == ECHONEST_SUCCESS:
             for song in response['response']['songs']:
+                logging.warning("song info: {}".format(song))
                 try:
                     track_info = song['tracks'][0]
-                    spotify_id = track_info['foreign_id']
+                    track_spotify_id = track_info['foreign_id']
+                    artist_spotify_id = song['artist_foreign_ids'][0]['foreign_id'].split(":")[-1]
                     song_info = (song['artist_name'], song['title'])
                     if song_info not in unique_tracks:
                         result.append({
-                            'id': spotify_id,
+                            'id': track_spotify_id,
                             'artist_name': song['artist_name'],
-                            'title': song['title']
+                            'title': song['title'],
+                            'artist_id': artist_spotify_id
                         })
                         unique_tracks.add(song_info)
                 except KeyError:

@@ -8,7 +8,8 @@ PATH = "/v1/artists"
 
 def generate_images(songs):
     conn = httplib.HTTPSConnection(SERVER)
-    ids = ",".join([item['id'] for item in songs])
+    ids = ",".join([item['artist_id'] for item in songs])
+    logging.warning("ids: {}".format(ids))
 
     params = urllib.urlencode(
     {
