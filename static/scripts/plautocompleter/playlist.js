@@ -97,7 +97,6 @@
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(response) {
-        response = JSON.parse(response);
         onSuccess($.map(response.songs, function(item) {
           return {
             artist: item.artist_name,
