@@ -21,7 +21,6 @@ def index():
 @nocache
 def generate_playlist(limit=10, pretty=None):
     playlist = json.loads(request.get_data())
-    logging.warning(playlist)
     limit = int(limit)
 
     if pretty == "pretty":
