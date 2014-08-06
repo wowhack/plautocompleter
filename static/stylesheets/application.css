@@ -12,6 +12,7 @@ ul, ol {
   padding: 0;
   text-align: left;
   list-style-position: inside;
+  position: relative;
 }
 
 ul {
@@ -33,8 +34,8 @@ ol li:last-child {
   border-bottom: 1px solid #eee;
 }
 
-ul li span,
-ol li span {
+ul li span.nice,
+ol li span.nice {
   float: right;
   background-color: #00FF63;
   color: #fff;
@@ -50,18 +51,42 @@ ol li i {
   font-size: 75%;
 }
 
-ul li span.destroy,
-ol li span.destroy {
-  opacity: 0;
-  background-color: #F32C09;
-}
-
 ul li:hover,
 ol li:hover {
   background-color: #fafafa;
 }
 
+/*ul li span.destroy,
+ol li span.destroy {
+  opacity: 0;
+  background-color: #F32C09;
+}
+
 ol li:hover span.destroy {
+  opacity: 1;
+}*/
+
+ol .track-actions {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  padding-right: 0.5em;
+}
+
+ol .track-actions i {
+  font-size: 100%;
+}
+
+ol .track-actions a.playing i,
+ol .track-actions a.playing:hover i {
+  color: #00FF63;
+}
+
+ol .track-actions a:hover i {
+  color: #000;
+}
+
+ol li:hover .track-actions {
   opacity: 1;
 }
 

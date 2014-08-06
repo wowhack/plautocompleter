@@ -13,6 +13,15 @@
       $(this).parents('li').remove();
     });
 
+    $('#app').on('click', '.preview', function() {
+      $this = $(this);
+      if ($this.hasClass('stopped')) {
+        $this.removeClass('stopped').addClass('playing');
+      } else {
+        $this.removeClass('playing').addClass('stopped');
+      }
+    });
+
     $('#app').on('click', '#save', function() {
       var $playlist = $('#playlist');
       var playlistId = $playlist.data('playlist-id');

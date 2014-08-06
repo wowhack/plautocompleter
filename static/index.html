@@ -41,7 +41,7 @@
           <li>
             {{name}}
             {{#if isShort}}
-              <span><i class="fa fa-thumbs-up"></i> Nice &amp; short</span>
+              <span class="nice"><i class="fa fa-thumbs-up"></i> Nice &amp; short</span>
             {{/if}}
           </li>
         </a>
@@ -60,7 +60,11 @@
         {{#each tracks}}
           <li data-track-uri="{{uri}}" {{#if original}} class='original' {{/if}}>
             {{name}} <i>by</i> {{artist}}
-            <a href="#"><span class="destroy">No thanks</span></a>
+            <span class="track-actions">
+              <a href="#" class="preview stopped"><i class="fa fa-volume-up"></i></a>
+              <a href="#" class="destroy"><i class="fa fa-times"></i></a>
+            </span>
+            <!--<a href="#"><span class="destroy">No thanks</span></a>-->
           </li>
         {{/each}}
       </ol>
