@@ -6,6 +6,7 @@ from os import path
 from flask import Flask, request, url_for, redirect
 
 import echonest
+import spotify
 from decorators import crossdomain, nocache
 
 app = Flask(__name__)
@@ -33,7 +34,8 @@ def generate_playlist(limit=10, pretty=None):
         formatter = json.dumps
 
     try:
-        result = echonest.generate_songs(playlist, limit)
+        songs = echonest.generate_songs(playlist, limit)
+        images = spotify.generate_images(songs)
     except echonest.EchoNestException as ex:
         return formatter({
             'status': {
@@ -45,8 +47,9 @@ def generate_playlist(limit=10, pretty=None):
         'status': {
             'success': True,
             'message': 'Success'
-        },
-        'songs': result}
+            },
+        'songs': songs,
+        'images': images}
 
     return formatter(response)
 
