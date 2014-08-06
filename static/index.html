@@ -2,6 +2,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <title>The Plautocompleter</title>
   </head>
   <body>
@@ -18,7 +19,7 @@
           Playlist autocompletion made easy<br>
           Turns tiny playlists into slightly longer ones<br>
         </p>
-        <a id="login" href="#" class="button">Sign in with Spotify</a>
+        <a id="login" href="#" class="button"><i class="fa fa-spotify"></i> Sign in with Spotify</a>
       </div>
 
       <div id="app-playlists">
@@ -40,7 +41,7 @@
           <li>
             {{name}}
             {{#if isShort}}
-              <span>Nice &amp; short</span>
+              <span><i class="fa fa-thumbs-up"></i> Nice &amp; short</span>
             {{/if}}
           </li>
         </a>
@@ -65,7 +66,7 @@
       </ol>
 
       <div class="actions">
-        <a id="save" href="#" class="button">Save to Spotify</a>
+        <a id="save" href="#" class="button"><i class="fa fa-check"></i> Save to Spotify</a>
         <a id="back" href="#">or cancel</a>
       </div>
     </script>

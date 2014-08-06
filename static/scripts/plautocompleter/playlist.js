@@ -48,10 +48,10 @@
         return item.uri;
       });
 
-      fetchFromIntenseScrubland(ids, function(tracks) {
-        result.tracks = result.tracks.concat(tracks);
+      // fetchFromIntenseScrubland(ids, function(tracks) {
+        // result.tracks = result.tracks.concat(tracks);
         onSuccess(result);
-      });
+      // });
     });
   };
 
