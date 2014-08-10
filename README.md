@@ -29,19 +29,19 @@ The input to the playlist generator is a playlist, on this format:
         {
             "artist": "Spice Girls",
             "name": "Wannabe - Radio Edit",
-            "uri": "spotify: track: 1Je1IMUlBXcx1Fz0WE7oPT",
+            "uri": "spotify:track:1Je1IMUlBXcx1Fz0WE7oPT",
             "original": true
         },
         {
             "artist": "Iron Maiden",
             "name": "Run to the Hills - 1998 - Remaster",
-            "uri": "spotify: track: 4Z4ZLBzCXSlHSCaxZ3WS7p",
+            "uri": "spotify:track:4Z4ZLBzCXSlHSCaxZ3WS7p",
             "original": true
         },
         {
             "artist": "Björk",
             "name": "Army of Me",
-            "uri": "spotify: track: 0pXQWCgKlh9ZiXcIE6wwC4",
+            "uri": "spotify:track:0pXQWCgKlh9ZiXcIE6wwC4",
             "original": true
         }
     ]
