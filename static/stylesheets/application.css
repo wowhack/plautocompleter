@@ -37,7 +37,7 @@ ol li:last-child {
 ul li span.nice,
 ol li span.nice {
   float: right;
-  background-color: #00FF63;
+  background-color: #28DB6E;
   color: #fff;
   font-size: 75%;
   line-height: 30px;
@@ -71,7 +71,7 @@ ol .track-actions i {
 
 ol .track-actions a.playing i,
 ol .track-actions a.playing:hover i {
-  color: #00FF63;
+  color: #28DB6E;
 }
 
 ol .track-actions a:hover i {
@@ -85,7 +85,7 @@ ol li:hover .track-actions {
 .button {
   padding: 0.75em;
   color: #fff;
-  background-color: #00FF63;
+  background-color: #28DB6E;
   border-radius: 10px;
   text-decoration: none;
 }
